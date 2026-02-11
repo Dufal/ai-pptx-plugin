@@ -1,0 +1,12 @@
+{
+  "name": "ai-pptx-dev",
+  "description": "Development marketplace for ai-pptx plugin",
+  "owner": { "name": "kb_pasha" },
+  "plugins": [{
+    "name": "ai-pptx",
+    "description": "Presentations with AI-generated backgrounds",
+    "version": "1.0.0",
+    "source": "./",
+    "author": { "name": "kb_pasha" }
+  }]
+}

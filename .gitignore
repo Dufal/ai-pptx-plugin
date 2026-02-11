@@ -1,0 +1,5 @@
+node_modules/
+outputs/
+.playwright/
+*.log
+.DS_Store

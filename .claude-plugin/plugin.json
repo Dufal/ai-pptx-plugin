@@ -1,0 +1,8 @@
+{
+  "name": "ai-pptx",
+  "version": "1.0.0",
+  "description": "Create presentations with AI-generated backgrounds via Whisk API",
+  "author": { "name": "kb_pasha" },
+  "license": "MIT",
+  "keywords": ["pptx", "presentation", "ai", "whisk", "backgrounds"]
+}
