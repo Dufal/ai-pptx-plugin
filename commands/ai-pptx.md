@@ -17,14 +17,14 @@ You are creating a PowerPoint presentation with AI-generated background images u
    - Visual style (e.g. "dark tech with neon accents", "warm minimalist corporate")
    - Reference images? (optional paths for style matching)
 
-3. **Gather slide content** — ask the user what slides they need. Available types:
-   - **Title** — main title, subtitle, date
-   - **Content** — title + bullet points
-   - **Data** — title + up to 3 metrics + chart placeholder
-   - **Features** — title + 3 feature cards
-   - **Closing** — heading + contact lines
+3. **Gather slide content** — ask the user what slides they need. Available template types:
+   - **title** — main title, subtitle, date
+   - **content** — title + bullet points
+   - **data** — title + up to 3 metrics + chart placeholder
+   - **features** — title + 3 feature cards
+   - **closing** — heading + contact lines
 
-   The user can include any subset of these 5 types.
+   Any number of slides in any order. Types can repeat (e.g. multiple `content` slides).
 
 4. **Build the presentation**:
 
@@ -41,13 +41,14 @@ buildPresentation({
   name: '<name>',
   style: '<style>',
   refs: [/* optional ref image paths */],
-  slides: {
-    title: { title: '...', subtitle: '...', date: '...' },
-    content: { title: '...', bullets: ['...', '...'] },
-    data: { title: '...', metrics: [{value: '...', label: '...'}] },
-    features: { title: '...', features: [{title: '...', description: '...'}] },
-    closing: { heading: '...', contactLines: ['...'] }
-  }
+  slides: [
+    { type: 'title', title: '...', subtitle: '...', date: '...' },
+    { type: 'content', title: '...', bullets: ['...', '...'] },
+    { type: 'content', title: '...', bullets: ['...', '...'] },
+    { type: 'data', title: '...', metrics: [{value: '...', label: '...'}] },
+    { type: 'features', title: '...', features: [{title: '...', description: '...'}] },
+    { type: 'closing', heading: '...', contactLines: ['...'] }
+  ]
 }).then(r => console.log('Done:', r.pptxPath)).catch(e => { console.error(e); process.exit(1); });
 "
 ```

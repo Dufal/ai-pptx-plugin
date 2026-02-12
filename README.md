@@ -8,7 +8,7 @@ Claude Code plugin for creating PowerPoint presentations with AI-generated backg
 - **Style consistency** — title slide anchors the visual style, all other slides follow
 - **Reference images** — upload your own brand images for style matching
 - **Gradient fallback** — works offline with auto-generated gradient backgrounds
-- **5 slide types** — title, content, data, features, closing
+- **Flexible slide list** — any number of slides in any order using available templates
 - **HTML-to-PPTX** — pixel-precise positioning via Playwright + PptxGenJS
 - **Thumbnail validation** — auto-generated grid for quick visual review
 
@@ -74,17 +74,20 @@ await buildPresentation({
   name: 'quarterly-report',
   style: 'corporate blue with golden accents',
   refs: ['./brand-image.png'],
-  slides: {
-    title: { title: 'Q4 Report', subtitle: 'Annual Review', date: '2026' },
-    content: { title: 'Highlights', bullets: ['Revenue up 23%', 'New markets opened'] },
-    data: {
+  slides: [
+    { type: 'title', title: 'Q4 Report', subtitle: 'Annual Review', date: '2026' },
+    { type: 'content', title: 'Highlights', bullets: ['Revenue up 23%', 'New markets opened'] },
+    { type: 'content', title: 'Challenges', bullets: ['Supply chain delays', 'Hiring competition'] },
+    {
+      type: 'data',
       title: 'Metrics',
       metrics: [
         { value: '$4.2M', label: 'Revenue' },
         { value: '156', label: 'New clients' }
       ]
     },
-    features: {
+    {
+      type: 'features',
       title: 'Strategy',
       features: [
         { title: 'Expand', description: 'Enter 3 new markets' },
@@ -92,8 +95,8 @@ await buildPresentation({
         { title: 'Hire', description: '50 new engineers' }
       ]
     },
-    closing: { heading: 'Thank You', contactLines: ['ceo@company.com'] }
-  }
+    { type: 'closing', heading: 'Thank You', contactLines: ['ceo@company.com'] }
+  ]
 });
 ```
 

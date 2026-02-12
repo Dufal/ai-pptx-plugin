@@ -1,6 +1,6 @@
 # Slide Types Reference
 
-Five slide templates are available. Each renders as 720pt x 405pt HTML (16:9) with positioned overlay elements on an AI-generated or gradient background.
+Available slide templates. Each renders as 720pt x 405pt HTML (16:9) with positioned overlay elements on an AI-generated or gradient background. Use any number of slides in any order — types can repeat.
 
 ## 1. Title Slide
 

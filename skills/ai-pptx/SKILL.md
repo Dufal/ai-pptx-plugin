@@ -14,7 +14,7 @@ Create professional PowerPoint presentations where every slide has a unique AI-g
 - **Style consistency** — title slide sets the style anchor, remaining slides use it as reference
 - **Reference images** — upload your own images to match brand style
 - **Gradient fallback** — works offline with Sharp-generated gradient backgrounds
-- **5 slide types** — title, content, data, features, closing
+- **Flexible slide list** — any number of slides in any order (title, content, data, features, closing templates)
 - **HTML→PPTX** — precise positioning via Playwright + PptxGenJS
 - **Thumbnail validation** — auto-generated grid for visual review
 
@@ -30,24 +30,26 @@ Ask the user for:
 
 ### Step 2: Prepare the Config
 
-Build a JSON config object matching this structure:
+Build a JSON config object. `slides` is an array — use any number of slides in any order, repeating types as needed:
 
 ```json
 {
   "name": "my-presentation",
   "style": "dark minimalist with subtle blue glow",
   "refs": ["/path/to/style-ref.png"],
-  "slides": {
-    "title": { "title": "...", "subtitle": "...", "date": "..." },
-    "content": { "title": "...", "bullets": ["...", "..."] },
-    "data": { "title": "...", "metrics": [{"value": "...", "label": "..."}], "chartLabel": "..." },
-    "features": { "title": "...", "features": [{"title": "...", "description": "..."}] },
-    "closing": { "heading": "...", "contactLines": ["...", "..."] }
-  }
+  "slides": [
+    { "type": "title", "title": "...", "subtitle": "...", "date": "..." },
+    { "type": "content", "title": "...", "bullets": ["...", "..."] },
+    { "type": "content", "title": "...", "bullets": ["...", "..."] },
+    { "type": "data", "title": "...", "metrics": [{"value": "...", "label": "..."}], "chartLabel": "..." },
+    { "type": "features", "title": "...", "features": [{"title": "...", "description": "..."}] },
+    { "type": "closing", "heading": "...", "contactLines": ["...", "..."] }
+  ]
 }
 ```
 
-Any slide type can be omitted if not needed.
+Available types: `title`, `content`, `data`, `features`, `closing` (see `references/slide-types.md`).
+You can have multiple slides of the same type, omit types you don't need, and order them freely.
 
 ### Step 3: Write Config and Run
 
@@ -102,15 +104,12 @@ If no valid token exists, the builder automatically falls back to gradient backg
 outputs/<name>/
 ├── presentation.pptx      # Final presentation
 ├── images/
-│   ├── bg-title.png        # AI or gradient backgrounds
-│   ├── bg-content.png
-│   ├── bg-data.png
-│   ├── bg-features.png
-│   └── bg-closing.png
-├── slide0-title.html       # Intermediate HTML slides
+│   ├── bg-0-title.png     # AI or gradient backgrounds (per slide)
+│   ├── bg-1-content.png
+│   ├── bg-2-content.png
+│   └── ...
+├── slide0-title.html      # Intermediate HTML slides
 ├── slide1-content.html
-├── slide2-data.html
-├── slide3-features.html
-├── slide4-closing.html
-└── thumbnails.jpg           # Validation thumbnail grid
+├── slide2-content.html
+└── thumbnails.jpg          # Validation thumbnail grid
 ```
